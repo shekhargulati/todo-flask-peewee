@@ -12,9 +12,15 @@ DEBUG = True
 SECRET_KEY = 'test_secret_key'
 
 app = Flask(__name__)
+db_name = os.environ['OPENSHIFT_APP_NAME']
+postgres_username = os.environ['OPENSHIFT_POSTGRESQL_DB_USERNAME']
+postgres_password = os.environ['OPENSHIFT_POSTGRESQL_DB_PASSWORD']
+postgres_host = os.environ['OPENSHIFT_POSTGRESQL_DB_HOST']
+postgres_port = os.environ['OPENSHIFT_POSTGRESQL_DB_PORT']
+
 #app.config.from_object(__name__)
-db = pw.PostgresqlDatabase(os.environ['OPENSHIFT_APP_NAME'], user=os.environ['OPENSHIFT_POSTGRESQL_DB_USERNAME'], password=os.environ['OPENSHIFT_POSTGRESQL_DB_PASSWORD'] ,'host'= os.environ['OPENSHIFT_POSTGRESQL_DB_HOST'],
-    'port'= os.environ['OPENSHIFT_POSTGRESQL_DB_PORT'],)
+db = pw.PostgresqlDatabase(db_name, user=postgres_username, password= postgres_password,'host'= postgres_host,
+    'port'= postgres_port,)
 auth = Auth(app, db)
 
 class PostgresqlModel(db.Model):
