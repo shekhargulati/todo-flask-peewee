@@ -22,7 +22,7 @@ postgres_port = os.environ['OPENSHIFT_POSTGRESQL_DB_PORT']
 db = PostgresqlDatabase('todoflaskpeewee', user='admin25tglbm', password= '9cWP64gCQw-S',host= '127.2.110.2',
     port= '5432',)
 
-class PostgresqlModel(db.Model):
+class PostgresqlModel(Model):
     """A base model that will use our Postgresql database"""
     class Meta:
         database = db
