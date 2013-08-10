@@ -19,8 +19,8 @@ postgres_host = os.environ['OPENSHIFT_POSTGRESQL_DB_HOST']
 postgres_port = os.environ['OPENSHIFT_POSTGRESQL_DB_PORT']
 
 #app.config.from_object(__name__)
-db = pw.PostgresqlDatabase(db_name, user=postgres_username, password= postgres_password,'host'= postgres_host,
-    'port'= postgres_port,)
+db = pw.PostgresqlDatabase('todoflaskpeewee', user='admin25tglbm', password= '9cWP64gCQw-S',host= '127.2.110.2',
+    port= '5432',)
 auth = Auth(app, db)
 
 class PostgresqlModel(db.Model):
