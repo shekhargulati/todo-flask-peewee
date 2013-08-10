@@ -132,7 +132,20 @@ def create_all():
     Tag.create_table(fail_silently=True)
     TaskTag.create_table(fail_silently=True)
 
+def add_users():
+    try:
+        u1 = auth.User(username='admin', admin=True, active=True)
+        u1.email = 'shekhargulati84@gmail.com'
+        u1.set_password('secret')
+        u1.save()
+        u2 = auth.User(username='shekhargulati', admin=True, active=True)
+        u2.email = 'shekhargulati@yahoo.com'
+        u2.set_password('password')
+        u2.save()
+    except Exception, e:
+        pass
 
 if __name__ == '__main__':
     create_all()
+    add_users()
     app.run()

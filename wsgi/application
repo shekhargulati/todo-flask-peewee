@@ -10,18 +10,3 @@ except IOError:
     pass
 
 from todoapp import app as application
-
-from todoapp import *
-
-create_all()
-
-u1 = auth.User(username='admin', admin=True, active=True)
-u1.email = 'shekhargulati84@gmail.com'
-u1.set_password('secret')
-u1.save()
-
-#add another user
-u2 = auth.User(username='shekhargulati', admin=True, active=True)
-u2.email = 'shekhargulati@yahoo.com'
-u2.set_password('password')
-u2.save()
