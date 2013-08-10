@@ -1,7 +1,6 @@
 import os
 import datetime
 from flask import Flask, flash, redirect, request, render_template, url_for
-import peewee as pw
 from peewee import *
 import wtforms as wt
 from flask_peewee.auth import Auth
@@ -20,7 +19,7 @@ postgres_host = os.environ['OPENSHIFT_POSTGRESQL_DB_HOST']
 postgres_port = os.environ['OPENSHIFT_POSTGRESQL_DB_PORT']
 
 #app.config.from_object(__name__)
-db = pw.PostgresqlDatabase('todoflaskpeewee', user='admin25tglbm', password= '9cWP64gCQw-S',host= '127.2.110.2',
+db = PostgresqlDatabase('todoflaskpeewee', user='admin25tglbm', password= '9cWP64gCQw-S',host= '127.2.110.2',
     port= '5432',)
 auth = Auth(app, db)
 
@@ -39,10 +38,10 @@ class User(PostgresqlModel):
 
 
 class Task(PostgresqlModel):
-    task = pw.TextField()
-    user = pw.ForeignKeyField(User)
-    created = pw.DateTimeField(default=datetime.datetime.now)
-    due = pw.DateField()
+    task = TextField()
+    user = ForeignKeyField(User)
+    created = DateTimeField(default=datetime.datetime.now)
+    due = DateField()
 
     @property
     def tags(self):
@@ -54,8 +53,8 @@ class Tag(PostgresqlModel):
 
 
 class TaskTag(PostgresqlModel):
-    task = pw.ForeignKeyField(Task)
-    tag = pw.ForeignKeyField(Tag)
+    task = ForeignKeyField(Task)
+    tag = ForeignKeyField(Tag)
 
 
 # Forms
