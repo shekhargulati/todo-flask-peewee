@@ -23,7 +23,7 @@ db = PostgresqlDatabase('todoflaskpeewee', user='admin25tglbm', password= '9cWP6
     port= '5432',)
 auth = Auth(app, db)
 
-class PostgresqlModel(Model):
+class PostgresqlModel(db.Model):
     """A base model that will use our Postgresql database"""
     class Meta:
         database = db
