@@ -4,6 +4,7 @@ from flask import Flask, flash, redirect, request, render_template, url_for
 import peewee as pw
 import wtforms as wt
 from flask_peewee.auth import Auth
+from flask_peewee.auth import BaseUser
 from flask_peewee.db import Database
 from utils import slugify
 
