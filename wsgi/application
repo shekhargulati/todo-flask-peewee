@@ -11,7 +11,7 @@ except IOError:
 
 from todoapp import app as application
 
-from todoflask import *
+from todoapp import *
 
 create_all()
 
