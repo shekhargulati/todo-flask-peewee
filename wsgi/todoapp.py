@@ -2,6 +2,7 @@ import os
 import datetime
 from flask import Flask, flash, redirect, request, render_template, url_for
 import peewee as pw
+from peewee import *
 import wtforms as wt
 from flask_peewee.auth import Auth
 from flask_peewee.auth import BaseUser
@@ -23,7 +24,7 @@ db = pw.PostgresqlDatabase('todoflaskpeewee', user='admin25tglbm', password= '9c
     port= '5432',)
 auth = Auth(app, db)
 
-class PostgresqlModel(db.Model):
+class PostgresqlModel(Model):
     """A base model that will use our Postgresql database"""
     class Meta:
         database = db
