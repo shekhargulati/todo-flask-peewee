@@ -16,7 +16,7 @@ DATABASE = {
 }
 
 DEBUG = True
-SECRET_KEY = '\xfb\x12\xdf\xa1@i\xd6>V\xc0\xbb\x8fp\x16#Z\x0b\x81\xeb\x16'
+SECRET_KEY = 'test_secret_key'
 
 app = Flask(__name__)
 app.config.from_object(__name__)
@@ -24,7 +24,11 @@ db = Database(app)
 auth = Auth(app, db)
 
 # Models
-User = auth.get_user_model()
+class User(db.Model, BaseUser):
+    # whatever fields
+
+    class Meta:
+        db_table = 'users' # <-- set explicitly right here
 
 
 class Task(db.Model):
