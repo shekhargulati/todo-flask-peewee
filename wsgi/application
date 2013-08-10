@@ -22,6 +22,6 @@ u1.save()
 
 #add another user
 u2 = auth.User(username='shekhargulati', admin=True, active=True)
-u2.email = 'shekhargulati84@gmail.com'
+u2.email = 'shekhargulati@yahoo.com'
 u2.set_password('password')
 u2.save()
