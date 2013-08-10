@@ -1,31 +1,23 @@
 import os
 import datetime
 from flask import Flask, flash, redirect, request, render_template, url_for
-import peewee as *
+import peewee as pw
 import wtforms as wt
 from flask_peewee.auth import Auth
 from flask_peewee.auth import BaseUser
 from flask_peewee.db import Database
 from utils import slugify
 
-DATABASE = {
-    'engine': 'peewee.PostgresqlDatabase',
-    'name': os.environ['OPENSHIFT_APP_NAME'],
-    'password': os.environ['OPENSHIFT_POSTGRESQL_DB_PASSWORD'],
-    'host': os.environ['OPENSHIFT_POSTGRESQL_DB_HOST'],
-    'port': os.environ['OPENSHIFT_POSTGRESQL_DB_PORT'],
-}
-
 DEBUG = True
 SECRET_KEY = 'test_secret_key'
 
 app = Flask(__name__)
 #app.config.from_object(__name__)
-db = PostgresqlDatabase(os.environ['OPENSHIFT_APP_NAME'], user=os.environ['OPENSHIFT_POSTGRESQL_DB_USERNAME'], password=os.environ['OPENSHIFT_POSTGRESQL_DB_PASSWORD'] ,'host'= os.environ['OPENSHIFT_POSTGRESQL_DB_HOST'],
+db = pw.PostgresqlDatabase(os.environ['OPENSHIFT_APP_NAME'], user=os.environ['OPENSHIFT_POSTGRESQL_DB_USERNAME'], password=os.environ['OPENSHIFT_POSTGRESQL_DB_PASSWORD'] ,'host'= os.environ['OPENSHIFT_POSTGRESQL_DB_HOST'],
     'port'= os.environ['OPENSHIFT_POSTGRESQL_DB_PORT'],)
 auth = Auth(app, db)
 
-class PostgresqlModel(Model):
+class PostgresqlModel(db.Model):
     """A base model that will use our Postgresql database"""
     class Meta:
         database = db
