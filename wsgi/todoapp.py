@@ -6,8 +6,19 @@ from flask_peewee.auth import Auth
 from flask_peewee.db import Database
 from utils import slugify
 
+DATABASE = {
+    'engine': 'peewee.PostgresqlDatabase',
+    'name': os.environ['OPENSHIFT_APP_NAME'],
+    'password': os.environ['OPENSHIFT_POSTGRESQL_DB_PASSWORD'],
+    'host': os.environ['OPENSHIFT_POSTGRESQL_DB_HOST'],
+    'port': os.environ['OPENSHIFT_POSTGRESQL_DB_PORT'],
+}
+
+DEBUG = True
+SECRET_KEY = '\xfb\x12\xdf\xa1@i\xd6>V\xc0\xbb\x8fp\x16#Z\x0b\x81\xeb\x16'
+
 app = Flask(__name__)
-app.config.from_pyfile('todoapp.cfg')
+app.config.from_object(__name__)
 db = Database(app)
 auth = Auth(app, db)
 
